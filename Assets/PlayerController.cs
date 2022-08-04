@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D body;
+    public SpriteRenderer sprite;
     public new Collider2D collider;
 
     [Range(1, 5)]
@@ -48,6 +49,12 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Sprite direction
+        if(walkForce < -0.1f)
+            sprite.flipX = true;
+        else if(walkForce > 0.1f)
+            sprite.flipX = false;
+
         // Walk & Run
         if (Input.GetButton("Sprint"))
             body.AddForce(new Vector2(walkForce * runMultiplier, 0), ForceMode2D.Impulse);
