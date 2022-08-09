@@ -1404,9 +1404,9 @@ MonoBehaviour:
   body: {fileID: 1151036565}
   sprite: {fileID: 1151036566}
   collider: {fileID: 1151036568}
-  walkSpeed: 1.5
-  runMultiplier: 1.5
-  jumpForce: 10
+  walkSpeed: 1.25
+  runMultiplier: 1.25
+  jumpForce: 5
 --- !u!1 &1221540972
 GameObject:
   m_ObjectHideFlags: 0
