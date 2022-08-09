@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -90,6 +90,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1196,34 +1208,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gui_paper_52
-      rect:
-        serializedVersion: 2
-        x: 576
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0b84d67e13ff82f4e95758e4f02f15fc
-      internalID: 345287736
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: gui_paper_53
       rect:
         serializedVersion: 2
-        x: 608
-        y: 224
-        width: 32
-        height: 32
+        x: 587
+        y: 234
+        width: 75
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1233,27 +1224,6 @@ TextureImporter:
       bones: []
       spriteID: 69a01de1def66584882f16a17cf73023
       internalID: 1848908052
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: gui_paper_54
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 823b0a669eee8b643be214f84f9a25ea
-      internalID: -1415435470
       vertices: []
       indices: 
       edges: []
@@ -1847,34 +1817,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gui_paper_83
-      rect:
-        serializedVersion: 2
-        x: 576
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f9c57cc0a77240d4fb88cd5d22573480
-      internalID: 1729647040
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: gui_paper_84
       rect:
         serializedVersion: 2
-        x: 608
-        y: 160
-        width: 32
-        height: 32
+        x: 592
+        y: 175
+        width: 65
+        height: 2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1884,27 +1833,6 @@ TextureImporter:
       bones: []
       spriteID: bcd7a560da1c0ed40998eac5cd4b1be0
       internalID: -846563138
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: gui_paper_85
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a430941310e201f46b26c86b895defed
-      internalID: -1401817467
       vertices: []
       indices: 
       edges: []
@@ -3454,7 +3382,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       gui_paper_75: 1001613358
-      gui_paper_114: -501872082
+      gui_paper_139: 311444570
       gui_paper_51: 1664418004
       gui_paper_79: 2062029998
       gui_paper_92: -117894627
@@ -3465,8 +3393,6 @@ TextureImporter:
       gui_paper_82: 476397519
       gui_paper_85: -1401817467
       gui_paper_3: 1027529816
-      gui_paper_123: -2035969216
-      gui_paper_137: -1931929226
       gui_paper_147: -210482603
       gui_paper_105: -693721728
       gui_paper_14: -1222089592
@@ -3474,10 +3400,9 @@ TextureImporter:
       gui_paper_88: 1031454073
       gui_paper_34: 2140486376
       gui_paper_89: -1378116427
-      gui_paper_140: 912202655
       gui_paper_69: -577152568
       gui_paper_77: 211361518
-      gui_paper_139: 311444570
+      gui_paper_114: -501872082
       gui_paper_153: 1709575532
       gui_paper_29: 779550619
       gui_paper_112: -1647898919
@@ -3494,8 +3419,9 @@ TextureImporter:
       gui_paper_73: 1035823789
       gui_paper_155: 2128213093
       gui_paper_124: 2049956889
-      gui_paper_54: -1415435470
       gui_paper_122: -1561771672
+      gui_paper_54: -1415435470
+      gui_paper_123: -2035969216
       gui_paper_150: 705366939
       gui_paper_157: 1584187287
       gui_paper_58: -2085097771
@@ -3535,18 +3461,18 @@ TextureImporter:
       gui_paper_28: 176846930
       gui_paper_130: 30459946
       gui_paper_45: 507351493
-      gui_paper_7: -1713679665
-      gui_paper_24: 246046817
       gui_paper_63: 927886169
+      gui_paper_7: -1713679665
       gui_paper_15: -1378608020
       gui_paper_78: 1628924000
       gui_paper_144: 515379051
+      gui_paper_24: 246046817
       gui_paper_21: 1646272559
       gui_paper_57: -728489376
-      gui_paper_110: 1166062693
       gui_paper_19: -2096464316
-      gui_paper_121: 578362363
+      gui_paper_110: 1166062693
       gui_paper_141: -1328817601
+      gui_paper_121: 578362363
       gui_paper_95: 1293727365
       gui_paper_10: 1454018276
       gui_paper_96: 1433819008
@@ -3579,13 +3505,15 @@ TextureImporter:
       gui_paper_27: -2089849859
       gui_paper_104: -518240852
       gui_paper_81: 1875961230
-      gui_paper_97: -1565134063
+      gui_paper_137: -1931929226
+      gui_paper_140: 912202655
       gui_paper_20: -819723098
-      gui_paper_32: 1568067371
-      gui_paper_35: -1200986224
+      gui_paper_97: -1565134063
       gui_paper_60: 1593747343
+      gui_paper_32: 1568067371
       gui_paper_4: -607057768
       gui_paper_25: -1547610849
+      gui_paper_35: -1200986224
       gui_paper_72: 1260061524
       gui_paper_91: -2043807680
       gui_paper_98: -1702473710

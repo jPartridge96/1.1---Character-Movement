@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D body;
     public SpriteRenderer sprite;
     public new Collider2D collider;
+    public HealthBar healthBar;
 
     [Range(1, 5)]
     public float walkSpeed;
@@ -14,6 +15,9 @@ public class PlayerController : MonoBehaviour
     public float runMultiplier;
     [Range(1, 10)]
     public float jumpForce;
+
+    public int maxHealth = 15;
+    public int currentHealth;
 
     private bool isGrounded;
     private float walkForce;
@@ -27,7 +31,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -45,6 +50,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         walkForce = walkSpeed * Input.GetAxisRaw("Horizontal");
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(2);
+        }
     }
 
     void FixedUpdate()
@@ -64,5 +74,11 @@ public class PlayerController : MonoBehaviour
         // Jump
         if (Input.GetButton("Jump") && isGrounded)
             body.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+    }
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
     }
 }
