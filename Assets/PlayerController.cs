@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public int maxHealth = 15;
     public int currentHealth;
 
+    private Animator animator;
     private bool isGrounded;
     private float walkForce;
 
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         body = gameObject.GetComponent<Rigidbody2D>();
         collider = gameObject.GetComponent<CapsuleCollider2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -38,12 +40,19 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Floor")
+        {
             isGrounded = true;
+            animator.SetBool("IsGrounded", true);
+            animator.SetBool("IsFalling", false);
+        }
     }
     void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Floor")
+        {
             isGrounded = false;
+            animator.SetBool("IsGrounded", false);
+        }
     }
 
     // Update is called once per frame
@@ -59,26 +68,38 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Sprite direction
-        if(walkForce < -0.1f)
-            sprite.flipX = true;
-        else if(walkForce > 0.1f)
-            sprite.flipX = false;
+        // FIX - Still moves after death
+        if(animator.GetFloat("Health") < 0.1f)
+        {   
+            // Sprite direction
+            if(walkForce < -0.1f)
+                sprite.flipX = true;
+            else if(walkForce > 0.1f)
+                sprite.flipX = false;
 
-        // Walk & Run
-        if (Input.GetButton("Sprint"))
-            body.AddForce(new Vector2(walkForce * runMultiplier, 0), ForceMode2D.Impulse);
-        else
-            body.AddForce(new Vector2(walkForce, 0), ForceMode2D.Impulse);
+            // Walk & Run
+            if (Input.GetButton("Sprint"))
+                body.AddForce(new Vector2(walkForce * runMultiplier, 0), ForceMode2D.Impulse);
+            else
+                body.AddForce(new Vector2(walkForce, 0), ForceMode2D.Impulse);
 
-        // Jump
-        if (Input.GetButton("Jump") && isGrounded)
-            body.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            // Jump
+            if (Input.GetButton("Jump") && isGrounded)
+                body.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+
+            // Animations
+            if(walkForce != 0.0f)
+                animator.SetBool("IsMoving", true);
+            else
+                animator.SetBool("IsMoving", false);
+        }   
     }
 
     void TakeDamage(int damage)
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+
+        animator.SetFloat("Health", currentHealth);
     }
 }
