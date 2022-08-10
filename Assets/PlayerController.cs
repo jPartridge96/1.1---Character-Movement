@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private bool isGrounded;
     private float walkForce;
+    private float lastYPos;
 
     void Awake()
     {
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        lastYPos = transform.position.y;
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
     }
@@ -68,8 +70,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // FIX - Still moves after death
-        if(animator.GetFloat("Health") < 0.1f)
+        if(animator.GetFloat("Health") > 0.1f)
         {   
             // Sprite direction
             if(walkForce < -0.1f)
@@ -92,6 +93,13 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("IsMoving", true);
             else
                 animator.SetBool("IsMoving", false);
+
+            if (lastYPos > transform.position.y + 0.1f)
+                animator.SetBool("IsFalling", true);
+            else
+                animator.SetBool("IsFalling", false);
+
+            lastYPos = transform.position.y;
         }   
     }
 
