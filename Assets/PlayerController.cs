@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public float walkSpeed;
     [Range(1, 3)]
     public float runMultiplier;
-    [Range(1, 10)]
+    [Range(1, 25)]
     public float jumpForce;
 
     public int maxHealth = 15;
@@ -39,18 +39,19 @@ public class PlayerController : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collider)
     {
-        if (collision.gameObject.tag == "Floor")
+        if (collider.gameObject.tag == "Floor")
         {
             isGrounded = true;
             animator.SetBool("IsGrounded", true);
             animator.SetBool("IsFalling", false);
         }
     }
-    void OnCollisionExit2D(Collision2D collision)
+    void OnCollisionExit2D(Collision2D collider)
     {
-        if (collision.gameObject.tag == "Floor")
+        Debug.Log(collider.gameObject.tag);
+        if (collider.gameObject.tag == "Floor")
         {
             isGrounded = false;
             animator.SetBool("IsGrounded", false);
