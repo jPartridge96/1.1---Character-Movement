@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
     }
 
-    void OnCollisionEnter2D(Collision2D collider)
+    void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Floor")
         {
@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsFalling", false);
         }
     }
-    void OnCollisionExit2D(Collision2D collider)
+    void OnTriggerExit2D(Collider2D collider)
     {
         Debug.Log(collider.gameObject.tag);
         if (collider.gameObject.tag == "Floor")
