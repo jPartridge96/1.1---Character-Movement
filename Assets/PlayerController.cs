@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         body = gameObject.GetComponent<Rigidbody2D>();
-        collider = gameObject.GetComponent<CapsuleCollider2D>();
+        collider = gameObject.GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
     }
 
@@ -39,19 +39,18 @@ public class PlayerController : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerEnter2D(Collider2D trigger)
     {
-        if (collider.gameObject.tag == "Floor")
+        if (trigger.gameObject.tag == "Floor")
         {
             isGrounded = true;
             animator.SetBool("IsGrounded", true);
             animator.SetBool("IsFalling", false);
         }
     }
-    void OnTriggerExit2D(Collider2D collider)
+    void OnTriggerExit2D(Collider2D trigger)
     {
-        Debug.Log(collider.gameObject.tag);
-        if (collider.gameObject.tag == "Floor")
+        if (trigger.gameObject.tag == "Floor")
         {
             isGrounded = false;
             animator.SetBool("IsGrounded", false);
@@ -63,10 +62,12 @@ public class PlayerController : MonoBehaviour
     {
         walkForce = walkSpeed * Input.GetAxisRaw("Horizontal");
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.E))
         {
             TakeDamage(2);
         }
+
+
     }
 
     void FixedUpdate()
@@ -85,9 +86,7 @@ public class PlayerController : MonoBehaviour
             else
                 body.AddForce(new Vector2(walkForce, 0), ForceMode2D.Impulse);
 
-            // Jump
-            if (Input.GetButton("Jump") && isGrounded)
-                body.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            
 
             // Animations
             if(walkForce != 0.0f)
@@ -102,6 +101,19 @@ public class PlayerController : MonoBehaviour
 
             lastYPos = transform.position.y;
         }   
+    }
+
+    void LateUpdate()
+    {
+        // Jump
+        if (Input.GetButtonDown("Jump") && isGrounded)
+            body.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+
+        // Attack
+        if(Input.GetButtonDown("Attack"))
+            animator.SetBool("IsAttacking", true);
+        else
+            animator.SetBool("IsAttacking", false);
     }
 
     void TakeDamage(int damage)

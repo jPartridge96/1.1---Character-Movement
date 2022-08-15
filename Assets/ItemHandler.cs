@@ -1,16 +1,20 @@
-public class ItemHandler
-{
-    public Item CreateItem(int id, string name, float buyPrice)
-    {
-        Item newItem = newItem(id, name, buyPrice);
-        return newItem;
-    }
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
-    public Item UpdateItem()
-    {
-        // find index of item given, update with value
-        return item;
-    }
+public class ItemHandler : MonoBehaviour
+{
+    // public Item CreateItem(int id, string name, float buyPrice)
+    // {
+    //     Item newItem = newItem(id, name, buyPrice);
+    //     return newItem;
+    // }
+
+    // public Item UpdateItem()
+    // {
+    //     // find index of item given, update with value
+    //     return item;
+    // }
 
     public void DeleteItem(Item item)
     {
@@ -19,7 +23,7 @@ public class ItemHandler
 
     public int GetNextId()
     {
-        int nextId;
+        int nextId = 0;
         // Use LINQ to find next available Id in list
         return nextId;
     }
