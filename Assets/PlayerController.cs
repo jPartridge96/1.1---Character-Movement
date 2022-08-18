@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     public int maxHealth = 15;
     public int currentHealth;
+    public GameObject[] panels = new GameObject[2];
 
     private Animator animator;
     private bool isGrounded;
@@ -62,11 +63,10 @@ public class PlayerController : MonoBehaviour
     {
         walkForce = walkSpeed * Input.GetAxisRaw("Horizontal");
 
-        if(Input.GetKeyDown(KeyCode.E))
-        {
+        if(Input.GetKeyDown(KeyCode.Z))
             TakeDamage(2);
-        }
-
+        if(Input.GetKeyDown(KeyCode.E))
+            panels[2].SetActive(!panels[2].active);
 
     }
 
@@ -85,8 +85,6 @@ public class PlayerController : MonoBehaviour
                 body.AddForce(new Vector2(walkForce * runMultiplier, 0), ForceMode2D.Impulse);
             else
                 body.AddForce(new Vector2(walkForce, 0), ForceMode2D.Impulse);
-
-            
 
             // Animations
             if(walkForce != 0.0f)
