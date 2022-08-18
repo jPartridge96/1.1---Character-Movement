@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     public int maxHealth = 15;
     public int currentHealth;
-    public GameObject[] panels = new GameObject[2];
+    public GameObject[] panels = new GameObject[3];
 
     private Animator animator;
     private bool isGrounded;
@@ -67,6 +67,8 @@ public class PlayerController : MonoBehaviour
             TakeDamage(2);
         if(Input.GetKeyDown(KeyCode.E))
             panels[2].SetActive(!panels[2].active);
+        if(Input.GetKeyDown(KeyCode.Escape))
+            panels[3].SetActive(!panels[3].active);
 
     }
 
