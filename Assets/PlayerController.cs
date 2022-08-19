@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer sprite;
     public new Collider2D collider;
     public HealthBar healthBar;
+    public MenuController menuController;
 
     [Range(1, 5)]
     public float walkSpeed;
@@ -18,7 +19,6 @@ public class PlayerController : MonoBehaviour
 
     public int maxHealth = 15;
     public int currentHealth;
-    public GameObject[] panels = new GameObject[3];
 
     private Animator animator;
     private bool isGrounded;
@@ -61,15 +61,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        walkForce = walkSpeed * Input.GetAxisRaw("Horizontal");
-
         if(Input.GetKeyDown(KeyCode.Z))
             TakeDamage(2);
-        if(Input.GetKeyDown(KeyCode.E))
-            panels[2].SetActive(!panels[2].active);
-        if(Input.GetKeyDown(KeyCode.Escape))
-            panels[3].SetActive(!panels[3].active);
-
+        walkForce = walkSpeed * Input.GetAxisRaw("Horizontal");
     }
 
     void FixedUpdate()
@@ -88,7 +82,7 @@ public class PlayerController : MonoBehaviour
             else
                 body.AddForce(new Vector2(walkForce, 0), ForceMode2D.Impulse);
 
-            // Animations
+            // Moves & Fall
             if(walkForce != 0.0f)
                 animator.SetBool("IsMoving", true);
             else
@@ -103,17 +97,23 @@ public class PlayerController : MonoBehaviour
         }   
     }
 
+    // TODO:
+    //  STILL JUMPS AFTER DEATH
+    //  JUMPFORCE AND ATTACK STILL APPLIED ON PAUSE
     void LateUpdate()
     {
-        // Jump
-        if (Input.GetButtonDown("Jump") && isGrounded)
-            body.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+        if(animator.GetFloat("Health") > 0.1f || menuController.paused == false)
+        { 
+            // Jump
+            if (Input.GetButtonDown("Jump") && isGrounded)
+                body.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
 
-        // Attack
-        if(Input.GetButtonDown("Attack"))
-            animator.SetBool("IsAttacking", true);
-        else
-            animator.SetBool("IsAttacking", false);
+            // Attack
+            if(Input.GetButtonDown("Attack"))
+                animator.SetBool("IsAttacking", true);
+            else
+                animator.SetBool("IsAttacking", false);
+        }
     }
 
     void TakeDamage(int damage)
